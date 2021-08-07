@@ -34,6 +34,10 @@ const factorialTwo = (number) => {
   return 1;
 };
 
+const factorialTernary = (number) => {
+  return number < 2 ? 1 : number * factorial(number - 1);
+};
+ 
 //Tail-call recursion optmization not fully supported in Javascript
 
 const tailFactorial = (number, multiplyer) => {
