@@ -1,28 +1,11 @@
-const sumValues = (number, sum = 0) => {
-  if (number < 1) {
-    return sum;
-  }
-  sum += number;
-  return sumValues(number - 1, sum);
+const sum = (number) => {
+  return number <= 1 ? number : sum(number - 1);
 };
 
-console.log(sumValues(10));
-
-//same function - shorter
-const recursiveSummation = (number) => {
-  if (number <= 1) {
-    return number;
-  }
-  return number + sumValues(number - 1);
-};
-
-console.log(recursiveSummation(10));
+console.log(sum(10));
 
 const factorial = (number) => {
-  if (number <= 1) {
-    return number;
-  }
-  return number * factorial(number - 1);
+  return number <= 1 ? number : number * factorial(number - 1);
 };
 
 console.log(factorial(5));
@@ -34,9 +17,6 @@ const factorialTwo = (number) => {
   return 1;
 };
 
-const factorialTernary = (number) => {
-  return number < 2 ? 1 : number * factorial(number - 1);
-};
  
 //Tail-call recursion optmization not fully supported in Javascript
 
