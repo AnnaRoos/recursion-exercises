@@ -38,3 +38,21 @@ function trampolinedFactorial(num) {
 }
 
 console.log(trampolinedFactorial(5));
+
+//Fibonacci optimized using memoization
+
+const memoizedCache = new Map();
+memoizedCache.set(0, 0);
+memoizedCache.set(1, 1);
+
+const optimizedFibonacci = (number) => {
+  if (memoizedCache.has(number)) {
+    return memoizedCache.get(number);
+  }
+  const result =
+    optimizedFibonacci(number - 1) + optimizedFibonacci(number - 2);
+  memoizedCache.set(number, result);
+  return result;
+};
+
+console.log(optimizedFibonacci(2));
