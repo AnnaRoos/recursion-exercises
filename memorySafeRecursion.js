@@ -42,8 +42,9 @@ console.log(trampolinedFactorial(5));
 //Fibonacci optimized using memoization
 
 const memoizedCache = new Map();
-memoizedCache.set(0, 0);
-memoizedCache.set(1, 1);
+memoizedCache.set(1, 0);
+memoizedCache.set(2, 1);
+memoizedCache.set(3, 1);
 
 const optimizedFibonacci = (number) => {
   if (memoizedCache.has(number)) {
@@ -55,4 +56,14 @@ const optimizedFibonacci = (number) => {
   return result;
 };
 
-console.log(optimizedFibonacci(2));
+console.log(optimizedFibonacci(11));
+
+const memoFibonacci = (number, memo) => {
+  memo = memo || {};
+  if (memo[number]) return memo[number];
+  if (number <= 3) return 1;
+  return memo[number] = memoFibonacci(number - 1, memo) + memoFibonacci(number - 2, memo);
+}
+
+
+console.log(memoFibonacci(11));
