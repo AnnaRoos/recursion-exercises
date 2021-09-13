@@ -40,20 +40,29 @@ function trampolinedFactorial(num) {
 console.log(trampolinedFactorial(5));
 
 
-//Universal memoization function from this article: https://scotch.io/tutorials/understanding-memoization-in-javascript
+//Universal memoization function from this article: https://www.freecodecamp.org/news/understanding-memoize-in-javascript-51d07d19430e/
 
-const memoizer = (func) => {
+const memoize = (fn) => {
   let cache = {};
-  return function (n) {
-    if (cache[n] != undefined) {
+  return (...args) => {
+    let n = args[0]; //just taking one argument here
+    if (n in cache) {
       return cache[n];
     } else {
-      let result = func(n);
+      let result = fn(n);
       cache[n] = result;
       return result;
     }
   }
 }
+
+//Creating a memoized function with the above
+
+const memoizedFunction = memoize(recursiveFunction);
+
+//Calling it
+
+memoizedFunction(arguments);
 
 //Fibonacci optimized using memoization
 
