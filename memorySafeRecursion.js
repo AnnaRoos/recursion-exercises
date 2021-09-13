@@ -39,6 +39,22 @@ function trampolinedFactorial(num) {
 
 console.log(trampolinedFactorial(5));
 
+
+//Universal memoization function from this article: https://scotch.io/tutorials/understanding-memoization-in-javascript
+
+const memoizer = (func) => {
+  let cache = {};
+  return function (n) {
+    if (cache[n] != undefined) {
+      return cache[n];
+    } else {
+      let result = func(n);
+      cache[n] = result;
+      return result;
+    }
+  }
+}
+
 //Fibonacci optimized using memoization
 
 const memoizedCache = new Map();
@@ -67,3 +83,4 @@ const memoFibonacci = (number, memo) => {
 
 
 console.log(memoFibonacci(11));
+
